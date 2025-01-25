@@ -1,11 +1,10 @@
 import math
-log = []
-temp = []
-i = 0
-n = input("What's your number?")
-target_sys = int(input("What's your system(<=10)?"))
 
-def convert(inp, target_sys): # for converting an input into a system, kinda works for 10+ systems, but not really
+g = input("What's your number?")
+target_sysg = int(input("What's your system(<=10)?"))
+results = []
+
+def convert(inp, target_sys): # for converting an input into a system 3(10) ==> 11(binary), kinda works for 10+ systems, but not really
     i = True
     out = []
     while i:
@@ -23,37 +22,38 @@ def number(input): #converts list to a number [1,2,3] ==> 123
             value += input[m]*(10**(len(input) - m-1))
     return value
 
-
-print("Your number is %s" %n)
-print("Log is %s" %log)
-temp = [int(temp) for temp in str(n)]
-print("Temp is %s" %temp)
-while True:
-    if log.count(n) > 1:
-        print("Loop found at n = %s" %n)
-        print("n index is %s" %log.index(n))
-        break
-    elif len(log) > 100:
-        print("no loop")
-        break
-    else:
-        while i < len(temp):
-            temp[i] = temp[i] ** 2
-            i = i + 1
-        n = sum(temp)
-        if not(target_sys == 10):
-            n = number(convert(n, target_sys))
-        log.append(n)
-    print("Temp is %s" %temp)
-    print("Your number is %s" %n)
-    i = 0
+def happy_check(n, target_sys):
+    log = []
+    #print("Your number is %s" % n)
+    #print("Log is %s" % log)
     temp = [int(temp) for temp in str(n)]
-    
+    #print("Temp is %s" % temp)
+    while True:
+        i = 0
+        temp = [int(temp) for temp in str(n)]
+        if log.count(n) > 1:
+            #print("Loop found at n = %s" %n)
+            #print("n index is %s" %log.index(n))
+            return "loop"
+        elif len(log) > 100:
+            #print("no loop")
+            return "no loop"
+        else:
+            while i < len(temp):
+                temp[i] = temp[i] ** 2
+                i = i + 1
+            n = sum(temp)
+            if not(target_sys == 10):
+                n = number(convert(n, target_sys))
+            log.append(n)
+        #print("Temp is %s" %temp)
+        #print("Your number is %s" %n)
+        #print("log is %s" %log)
+        if n == 1:
+            return "happy"
 
-print("End of line")
-print("Temp is %s" %temp)
-n = sum(temp)
-print("Your number is %s" %n)
-print("Log is %s" %log)
-if n == 1:
-    print("Happy number!!!")
+for j in range(int(g)):
+    results.append(happy_check(j, target_sysg))
+    print(j)
+
+print(results)
