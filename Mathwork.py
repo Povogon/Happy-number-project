@@ -1,5 +1,6 @@
 import math
 
+open("Results.txt","w").write("")
 g = input("What's your number?")
 target_sysg = int(input("What's your system(<=10)?"))
 results = []
@@ -56,4 +57,5 @@ for j in range(int(g)):
     results.append(happy_check(j, target_sysg))
     print(j)
 
-print(results)
+for k in results:
+    open("Results.txt","a").write("'%s'" %k)
