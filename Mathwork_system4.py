@@ -25,8 +25,10 @@ def number(input): #converts list to a number [1,2,3] ==> 123
 
 def happy_check(n, target_sys):
     counter = 0
+    log = []
     n = number(convert(n, target_sys))
     temp = [int(temp) for temp in str(n)]
+    log.append("%s"%n)
     while True:
         i = 0
         temp = [int(temp) for temp in str(n)]
@@ -36,11 +38,15 @@ def happy_check(n, target_sys):
         n = sum(temp)
         n = number(convert(n, target_sys))
         counter += 1
+        log.append(">|%s|"%n)
         if n == 1:
-            return " H%s" %counter
+            log.append("H%s  " %counter)
+            return log
 
 for j in range(int(g)):
-    results.append(happy_check(j+1, target_sysg))
+    for k in happy_check(j+1, target_sysg):
+        open("Results.txt", "a").write("%s" % k)
+    #results.append(happy_check(j+1, target_sysg))
     #print(j)
 
 for k in results:

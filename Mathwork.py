@@ -2,7 +2,7 @@ import math
 
 open("Results.txt","w").write("")
 g = input("What's your number?")
-target_sysg = 4 #int(input("What's your system(<=10)?")) uncomment the code for more choice
+target_sysg = int(input("What's your system(<=10)?")) #uncomment the code for more choice
 results = []
 
 def convert(inp, target_sys): # for converting an input into a system 3(10) ==> 11(binary), kinda works for 10+ systems, but not really
