@@ -40,8 +40,11 @@ def happy_check(n, target_sys):
         counter += 1
         log.append(">|%s|"%n)
         if n == 1:
-            log.append("H%s  " %counter)
-            return log
+            if counter >= 8:
+                log.append("|    H%s    |" % counter)
+            else:
+                log.append("H%s  " %counter)
+                return log
 
 for j in range(int(g)):
     for k in happy_check(j+1, target_sysg):

@@ -24,23 +24,28 @@ def number(input): #converts list to a number [1,2,3] ==> 123
     return value
 
 def happy_check(n, target_sys):
-    log = []
+    if not (target_sys == 10):
+        n = number(convert(n, target_sys))
+    log = [n]
+    transform = [n]
     counter = 0
     #print("Your number is %s" % n)
-    #print("Log is %s" % log)
+    print("Log is %s" % log)
     temp = [int(temp) for temp in str(n)]
     #print("Temp is %s" % temp)
     while True:
         i = 0
         temp = [int(temp) for temp in str(n)]
         #print(log.count(n))
-        if log.count(n) >= 1:
+        if log.count(n) > 1:
             #print("Loop found at n = %s" %n)
             #print("n index is %s" %log.index(n))
-            return "L%s" %counter
+            transform.append(">L%s" % counter)
+            return transform
         elif len(log) > 100:
             #print("no loop")
-            return "N%s" %counter
+            transform.append(">N%s" %counter)
+            return transform
         else:
             while i < len(temp):
                 temp[i] = temp[i] ** 2
@@ -51,12 +56,14 @@ def happy_check(n, target_sys):
                 n = number(convert(n, target_sys))
                 #print(n)
             log.append(n)
+            transform.append(">|%s|"%n)
             counter += 1
         #print("Temp is %s" %temp)
         #print("Your number is %s" %n)
         #print("log is %s" %log)
         if n == 1:
-            return "H%s" %counter
+            transform.append(">H%s" % counter)
+            return transform
 
 for j in range(int(g)):
     results.append(happy_check(j, target_sysg))
